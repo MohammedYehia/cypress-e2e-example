@@ -1,3 +1,10 @@
 {
-	"baseUrl": "http://localhost:3000"
+	"baseUrl": "http://localhost:3000",
+	"blacklistHosts": [
+		"*fonts.googleapis.com",
+		"www.google-analytics.com",
+		"*.google-analytics.com",
+		"*google-analytics.com"
+	],
+	"video": false
 }
