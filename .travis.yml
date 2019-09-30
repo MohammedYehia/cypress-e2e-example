@@ -16,11 +16,18 @@ cache:
   directories:
     - ~/.npm
     - ~/.cache
+  # install dependencies and check that Cypress can run
+  override:
+    - npm ci
+    - npm run cy:verify
+
+before_script:
+  ## we use the '&' ampersand which tells
+  ## travis to run this process in the background
+  ## else it would block execution and hang travis
+  - npm start -- --silent &
 
 script:
-  #   ## print all Travis environment variables for debugging
-  - $(npm bin)/print-env TRAVIS
-  - npm start &
   - npm run cy:run
   # after all tests finish running we need
   # to kill all background jobs (like "npm start &")
