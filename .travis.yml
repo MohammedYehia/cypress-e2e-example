@@ -2,7 +2,7 @@ language: node_js
 
 node_js:
   # Node 10.3+ includes npm@6 which has good "npm ci" command
-  - 10.8
+  - stable
 
 # if using Ubuntu 16 need this library
 # https://github.com/cypress-io/cypress-documentation/pull/1647
@@ -17,12 +17,11 @@ cache:
     - ~/.npm
     - ~/.cache
 
-defaults: &defaults
-  script:
-    #   ## print all Travis environment variables for debugging
-    - $(npm bin)/print-env TRAVIS
-    - npm start &
-    - npm run cypress
-    # after all tests finish running we need
-    # to kill all background jobs (like "npm start &")
-    - kill $(jobs -p) || true
+script:
+  #   ## print all Travis environment variables for debugging
+  - $(npm bin)/print-env TRAVIS
+  - npm start &
+  - npm run cy:run
+  # after all tests finish running we need
+  # to kill all background jobs (like "npm start &")
+  - kill $(jobs -p) || true
