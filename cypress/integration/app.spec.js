@@ -72,4 +72,14 @@ describe("First Test", () => {
     // check the result div after clicking the Sum button
     cy.get(".result").contains("result : 4");
   });
+
+  // this is a simple test for XHR request
+  // for more https://docs.cypress.io/api/commands/request.html
+  it("axios test", () => {
+    cy.request("https://jsonplaceholder.typicode.com/posts/1").should(res => {
+      // eslint-disable-next-line no-unused-expressions
+      expect(res.body).not.to.be.null;
+      cy.contains(res.body.title).should("not.be.empty");
+    });
+  });
 });
