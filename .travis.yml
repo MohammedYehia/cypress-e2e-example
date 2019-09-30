@@ -1,7 +1,6 @@
 language: node_js
 
 node_js:
-  # Node 10.3+ includes npm@6 which has good "npm ci" command
   - stable
 
 # if using Ubuntu 16 need this library
@@ -28,6 +27,7 @@ before_script:
   - npm start -- --silent &
 
 script:
+  - npm test
   - npm run cy:run
   # after all tests finish running we need
   # to kill all background jobs (like "npm start &")
